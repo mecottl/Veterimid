@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Facturas</title>
+    <link rel="stylesheet" href="../Style/read.css">
+</head>
+<body>
+    
+    <a href="facturas_create.html">Agregar factura</a>
+    <input type="text" class = "busqueda" id="searchInput" onkeyup="buscarFacturas()" placeholder="Buscar por cliente...">
+
+    <h2>Lista de facturas</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="facturasTabla">
+            <!-- Aquí se cargarán los facturas con JS -->
+        </tbody>
+    </table>
+    <a href="../admin.html">Menu</a>
+
+    <script>
+        let facturas = []; // Array para almacenar los datos de inventario
+
+        function cargarfacturas() {
+            fetch('facturas_read.php')
+                .then(response => response.json())
+                .then(data => {
+                    facturas = data; // Guardamos los datos en el array
+                    mostrarfacturas(facturas); // Llamamos a la función que muestra los inventarios
+                })
+                .catch(error => console.error("Error al cargar los inventarios:", error));
+        }
+
+        function mostrarfacturas(data) {
+                    const tabla = document.getElementById('facturasTabla');
+                    tabla.innerHTML = '';
+                    data.forEach(factura => {
+                        const fila = document.createElement('tr');
+                        
+                        fila.innerHTML = `
+                            <td>${factura.id_factura}</td>
+                            <td>${factura.cliente_nombre}</td>
+                            <td>${factura.fecha}</td>
+                            <td>${factura.total}</td>
+                            <td>
+                                <a href="facturas_update.html?id=${factura.id_factura}">Editar</a>
+                                <a href="facturas_delete.php?id=${factura.id_factura}" onclick="return confirm('¿Seguro que deseas eliminar esta factura?')">Eliminar</a>
+                            </td>
+                        `;
+                        tabla.appendChild(fila);
+                    });
+                }
+
+                function buscarFacturas() {
+                    const input = document.getElementById('searchInput');
+                    const filtro = input.value.toLowerCase(); // Convertimos la búsqueda a minúsculas
+                    const resultados = facturas.filter(factura => {
+                        return factura.cliente_nombre.toLowerCase().includes(filtro);
+                    });
+                    mostrarfacturas(resultados); // Mostramos los inventarios filtrados
+                }
+
+        document.addEventListener("DOMContentLoaded", cargarfacturas);
+    </script>
+</body>
+</html>

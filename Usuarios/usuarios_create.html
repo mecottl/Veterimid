@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo usuario</title>
+</head>
+<body>
+    <h2>Nuevo usuario</h2>
+    <form action="usuarios_create.php" method="post">
+
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required><br>
+        
+        <label>Correo:</label>
+        <input type="email" name="correo" required><br>
+
+        <label>Contraseña:</label>
+        <input type="password" name="contraseña" required><br>
+        
+        <label>Rol:</label>
+        <select name="rol" required>
+            <option value="">Selecciona una opcion</option>
+            <option value="Administrador">Administrador</option>
+            <option value="Contador">Contador</option>
+            <option value="Veterinario">Veterinario</option>
+            <option value="Recepcionista">Recepcionista</option>
+        </select><br>
+        
+        <input type="submit" value="Guardar">
+    </form>
+
+</body>
+</html>

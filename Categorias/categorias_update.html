@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar categoria</title>
+</head>
+<body>
+    <h2>Editar categoria</h2>
+    <form action="categorias_update.php" method="post">
+        <input type="hidden" name="id_categoria" id="categoria_id">
+
+        <label>Nombre:</label>
+        <input type="text" name="nombre" id="categoria_nombre" required><br>
+        
+        <label>Descripcion:</label>
+        <input type="text" name="descripcion" id="categoria_descripcion" required><br>
+
+        <input type="submit" value="Actualizar">
+    </form>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const categoriaID = params.get('id');
+    
+        if (categoriaID) {
+            fetch('../obtencion//categorias_obtener.php?id=' + categoriaID)
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Datos recibidos:", data); // Verifica en la consola
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        document.getElementById('categoria_id').value = data.id_categoria;
+                        document.getElementById('categoria_nombre').value = data.nombre;
+                        document.getElementById('categoria_descripcion').value = data.descripcion;
+                    }
+                })
+                .catch(error => console.error("Error al obtener datos de la categoria:", error));
+        } else {
+            alert("ID de categoria no proporcionado.");
+        }        
+    </script>
+</body>
+</html>

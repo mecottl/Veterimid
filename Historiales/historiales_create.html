@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo historial</title>
+</head>
+<body>
+    <h2>Nuevo historial</h2>
+    <form action="historiales_create.php" method="post">
+        
+        <label>Mascota:</label>
+        <select name="mascota" id="mascotaSelect" required>
+            <option value="">Selecciona una mascota</option>
+        </select><br>
+
+        <label>Fecha:</label>
+        <input type="date" name="fecha" required><br>
+        
+        <label>Descripcion:</label>
+        <input type="text" name="descripcion" required><br>
+
+        <label>Tratamiento:</label>
+        <input type="text" name="tratamiento" required><br>
+
+
+        <input type="submit" value="Guardar">
+    </form>
+
+    <script>
+        function cargarMascotas() {
+            fetch('../obtencion/mascotas2_obtener.php')
+                .then(response => response.json())
+                .then(data => {
+                    const select = document.getElementById('mascotaSelect');
+                    data.forEach(mascota => {
+                        const option = document.createElement('option');
+                        option.value = mascota.id_mascota;
+                        option.textContent = mascota.nombre;
+                        select.appendChild(option);
+                    });
+                })
+                .catch(error => console.error("Error al cargar mascotas:", error));
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            cargarMascotas();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo proveedor</title>
+</head>
+<body>
+    <h2>Nuevo proveedor</h2>
+    <form action="proveedores_create.php" method="post">
+        
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required><br>
+        
+        <label>Contacto:</label>
+        <input type="text" name="contacto" required><br>
+
+        <label>Telefono:</label>
+        <input type="text" name="telefono" required><br>
+
+        <label>Correo:</label>
+        <input type="email" name="correo" required><br>
+
+        <label>Direccion:</label>
+        <input type="text" name="direccion" required/>
+
+        <input type="submit" value="Guardar">
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Historial</title>
+    <link rel="stylesheet" href="../Style/read.css"/>
+</head>
+<body>
+    
+    <a href="historiales_create.html">Agregar historial</a>
+    <input type="text" class = "busqueda" id="searchInput" placeholder="Buscar por mascota..." onkeyup="buscarhistorial()">
+
+    <h2>Lista de historiales médicos</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Mascota</th>
+                <th>Fecha</th>
+                <th>Descripción</th>
+                <th>Tratamiento</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="historialTabla">
+            <!-- Aquí se cargarán los historial con JS -->
+        </tbody>
+    </table>
+    
+    <a href="../admin.html">Menu</a>
+
+    <script>
+        let historiales = []; // Array para almacenar los datos de categoria
+
+        function cargarhistorial() {
+            fetch('historiales_read.php')
+                .then(response => response.json())
+                .then(data => {
+                    historiales = data; // Guardamos los datos en el array
+                    mostrarhistorial(historiales); // Llamamos a la función que muestra los categorias
+                })
+                .catch(error => console.error("Error al cargar los categorias:", error));
+        }
+
+        function mostrarhistorial(data) {
+                    const tabla = document.getElementById('historialTabla');
+                    tabla.innerHTML = '';
+                    data.forEach(historial => {
+                        const fila = document.createElement('tr');
+                        
+                        fila.innerHTML = `
+                            <td>${historial.id_historial}</td>
+                            <td>${historial.mascota}</td>
+                            <td>${historial.fecha}</td>
+                            <td>${historial.descripcion}</td>
+                            <td>${historial.tratamiento}</td>
+                            <td>
+                                <a href="historiales_update.html?id=${historial.id_historial}">Editar</a>
+                                <a href="historiales_delete.php?id=${historial.id_historial}" onclick="return confirm('¿Seguro que deseas eliminar esta historial?')">Eliminar</a>
+                            </td>
+                        `;
+                        tabla.appendChild(fila);
+                    });
+                }
+                
+                function buscarhistorial() {
+                    const input = document.getElementById('searchInput');
+                    const filtro = input.value.toLowerCase(); // Convertimos la búsqueda a minúsculas
+                    const resultados = historiales.filter(historial => {
+                        return historial.mascota.toLowerCase().includes(filtro);
+                    });
+                    mostrarhistorial(resultados); // Mostramos los categorias filtrados
+                }
+
+        document.addEventListener("DOMContentLoaded", cargarhistorial);
+    </script>
+</body>
+</html>

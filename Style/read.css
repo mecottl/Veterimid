@@ -1,0 +1,171 @@
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e3f2fd; /* Azul claro, sensación de frescura */
+    margin: 20px;
+    padding: 20px;
+}
+
+h2 {
+    color: #2c3e50;
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Enlaces estilo botones */
+a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: #27ae60; /* Verde veterinario */
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin: 10px 0;
+    transition: background 0.3s, transform 0.2s;
+    font-weight: bold;
+}
+
+a:hover {
+    background-color: #219150;
+    transform: scale(1.05);
+}
+
+a:last-of-type {
+    background-color: #3498db; /* Azul para el menú */
+}
+
+a:last-of-type:hover {
+    background-color: #217dbb;
+}
+
+/* Tabla de mascotas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #16a085; /* Verde oscuro */
+    color: white;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #f8f9fa; /* Gris muy claro */
+}
+
+tr:hover {
+    background-color: #d1f5e1; /* Verde claro */
+}
+
+/* Estilos para botones de acciones (Editar y Eliminar) */
+td a {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+td a:first-child {
+    background-color: #f39c12; /* Naranja para editar */
+}
+
+td a:first-child:hover {
+    background-color: #e08e0b;
+}
+
+td a:last-child {
+    background-color: #e74c3c; /* Rojo para eliminar */
+}
+
+td a:last-child:hover {
+    background-color: #c0392b;
+}
+
+.busqueda {
+    width: 300px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #6c63ff;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.busqueda:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 5px rgba(79, 70, 229, 0.5);
+}
+
+.busqueda::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+
+
+/* Menú lateral */
+#btn-menu {
+    display: none;
+}
+.container-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: #1c1c1c;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+#btn-menu:checked ~ .container-menu {
+    transform: translateX(0);
+}
+.cont-menu {
+    padding-top: 50px;
+}
+.cont-menu nav {
+    display: flex;
+    flex-direction: column;
+}
+.cont-menu nav a {
+    color: #c7c7c7;
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    border-bottom: 1px solid #333;
+    transition: background 0.3s ease;
+    font-family: "Edu AU VIC WA NT Hand", serif;
+    font-size: 25px;
+}
+.cont-menu nav a:hover {
+    background: #333;
+}
+
+/* Botón de cierre */
+.close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+.btn-menu label {
+    font-size: 50px;
+    cursor: pointer;    
+    margin-left: 10px;
+}
