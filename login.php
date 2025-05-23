@@ -1,5 +1,5 @@
 <?php
-include("config/conectar.php"); // Conexión a la base de datos
+include("./config/conectar.php"); // Conexión a la base de datos
 
 // Leer los datos enviados desde JavaScript
 $datos = json_decode(file_get_contents("php://input"), true);
